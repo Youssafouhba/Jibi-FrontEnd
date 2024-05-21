@@ -1,0 +1,60 @@
+<form [formGroup]="agentForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="nom">Nom:</label>
+    <input id="nom" formControlName="nom" type="text">
+  </div>
+  <div>
+    <label for="prenom">Prénom:</label>
+    <input id="prenom" formControlName="prenom" type="text">
+  </div>
+  <div>
+    <label for="typePiece">Type de pièce d'identité:</label>
+    <select id="typePiece" formControlName="typePiece">
+      <option value="CIN">CIN</option>
+      <option value="Passport">Passeport</option>
+      <option value="Permis">Permis de conduire</option>
+    </select>
+  </div>
+  <div>
+    <label for="numPiece">Numéro de pièce d'identité:</label>
+    <input id="numPiece" formControlName="numPiece" type="text">
+  </div>
+  <div>
+    <label for="dateNaissance">Date de naissance:</label>
+    <input id="dateNaissance" formControlName="dateNaissance" type="date">
+  </div>
+  <div>
+    <label for="adresse">Adresse:</label>
+    <input id="adresse" formControlName="adresse" type="text">
+  </div>
+  <div>
+    <label for="email">Email:</label>
+    <input id="email" formControlName="email" type="email">
+  </div>
+  <div>
+    <label for="confirmEmail">Confirmer Email:</label>
+    <input id="confirmEmail" formControlName="confirmEmail" type="email">
+  </div>
+  <div>
+    <label for="telephone">Téléphone:</label>
+    <input id="telephone" formControlName="telephone" type="text">
+  </div>
+  <div>
+    <label for="numImmatriculation">Numéro d'immatriculation au registre de commerce:</label>
+    <input id="numImmatriculation" formControlName="numImmatriculation" type="text">
+  </div>
+  <div>
+    <label for="numPatente">Numéro de patente:</label>
+    <input id="numPatente" formControlName="numPatente" type="text">
+  </div>
+  <div>
+    <label>Pièces jointes:</label>
+    <div *ngFor="let attachment of attachments; let i = index">
+      <input type="file" (change)="onFileChange($event, i)">
+      <input type="text" placeholder="Description" [formControlName]="'description' + i">
+      <button type="button" (click)="removeAttachment(i)">Supprimer</button>
+    </div>
+    <button type="button" (click)="addAttachment()">Ajouter une pièce jointe</button>
+  </div>
+  <button type="submit">Créer l'Agent</button>
+</form>
